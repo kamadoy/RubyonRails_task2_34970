@@ -1,0 +1,24 @@
+<% if flash[:notice] %>
+<p id="notice">
+  <%= flash[:notice] %>
+</p>
+<% end %>
+<% if @book.errors.any? %>
+  <%= @book.errors.count %>errors prohibited this obj from being saved:
+  <ul>
+    <% @book.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+<%= render 'books/new', {user: @user,book: @book} %>
+<% @books.each do |book| %>
+<div>
+   <p>title：<%= book.title %></p>
+  <p>opinion：<%= book.body %></p>
+  <p>image：<%= image_tag book.user.get_profile_image(100,100) %></p>  <p>name：<%= book.user.name %></p>
+ <%= link_to"show", book_path(book)  %>
+
+  <% end %>
+
+</div>

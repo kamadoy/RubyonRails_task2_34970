@@ -1,0 +1,9 @@
+<%= render 'books/new', {user: @user,book: @book} %>
+<% @users.each do |user| %>
+<div>
+  <p>image：<%= image_tag user.get_profile_image(100,100) %></p>  <p>name：<%= user.name %></p>
+ <%= link_to"show", user_path(user)  %>
+
+  <% end %>
+
+</div>

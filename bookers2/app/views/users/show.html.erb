@@ -1,0 +1,18 @@
+<% if flash[:notice] %>
+<p id="notice">
+  <%= flash[:notice] %>
+</p>
+<% end %>
+<%= render 'books/new', {user: @user,book: @book} %>
+<h1>Books</h1>
+</div>
+<% @books.each do |book| %>
+<div>
+  <p>title：<%= book.title %></p>
+  <p>opinion：<%= book.body %></p>
+ <%= link_to"show", book_path(book)  %>
+
+  <% end %>
+
+</div>
+
