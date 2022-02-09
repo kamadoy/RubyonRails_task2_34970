@@ -6,7 +6,8 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%#= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
@@ -15,40 +16,81 @@
     <%#=content_tag :div, message,class: message_type %>
     <%# end %>
     <header>
-    <% if user_signed_in? %>
-      <li>
-        <%= link_to "Bookers", root_path %>
+      <nav class="navar navar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="https://382aae8ebfe54f7b8ae89b596ddbb666.vfs.cloud9.us-east-1.amazonaws.com/">
+          <span>Bookers</span>
+        </a>
+        <%#= link_to "Bookers", root_path %>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav ml-auto">
+
+      <% if user_signed_in? %>
+      <li class="nav-list">
+        <%= link_to user_path(current_user.id), class: 'nav-link text-light' do %>
+        <i class="fas fa-home"></i>
+        Home
+        <% end %>
       </li>
-      <li>
-        <%= link_to "Home", user_path(current_user.id) %>
+      <li class="nav-list">
+        <%= link_to  users_path, class: 'nav-link text-light' do %>
+        <i class="fas fa-users"></i>
+        Users
+        <% end %>
       </li>
-      <li>
-        <%= link_to "Users", users_path %>
+       <li class="nav-list">
+        <%= link_to books_path, class: 'nav-link text-light' do %>
+        <i class="fas fa-book-open"></i>
+        Books
+        <% end %>
       </li>
-       <li>
-        <%= link_to "Books", books_path %>
+      <li class="nav-list">
+        <%= link_to  destroy_user_session_path, method: :delete, class: 'nav-link text-light' do %>
+        <i class="fas fa-sign-out-alt"></i>
+        Log out
+        <% end %>
       </li>
-      <li>
-        <%= link_to "Log out", destroy_user_session_path, method: :delete %>
-      </li>
+      </ul>
+      </div>
     <% else %>
-      <li>
-        <%= link_to "Bookers", root_path %>
+      <li class="nav-list">
+        <%= link_to root_path,class: 'nav-link text-light' do %>
+        <i class="fas fa-home"></i>
+        Home
+        <% end %>
+
+      <li class="nav-list">
+        <%= link_to about_path, class: 'nav-link text-light' do %>
+         <i class="fas fa-link"></i>
+        About
+        <% end %>
       </li>
-      <li>
-        <%= link_to "Sign up", new_user_registration_path %>
+      <li class="nav-list">
+        <%= link_to new_user_registration_path, class: 'nav-link text-light' do %>
+         <i class="fas fa-user-plus"></i>
+        Sign up
+        <% end %>
       </li>
-      <li>
-        <%= link_to "Log in", new_user_session_path %>
-      </li>
-      <li>
-        <%= link_to "Home", root_path %>
-      </li>
- <li>
-        <%= link_to "About", about_path %>
+      <li class="nav-list">
+        <%= link_to new_user_session_path, class: 'nav-link text-light' do %>
+         <i class="fas fa-sign-in-alt"></i>
+         Log in
+        <% end %>
       </li>
     <% end %>
+    </nav>
   </header>
   <%= yield %>
 </body>
+<footer>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="mx-auto">
+                <p>CopyRight Infratop.inc</p>
+            </div>
+        </div>
+    </div>
+</footer>
 </html>
